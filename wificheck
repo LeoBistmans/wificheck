@@ -7,7 +7,7 @@ bold=$(tput bold)
 norm=$(tput sgr0)
 
 function getwifiinfo { 
-l2=`$whereisiwconfig $wifiinterface | sed -e s/"wlp2s0      IEEE 802.11abgn  ESSID:"//g | sed -e s/"          Mode:Managed  Frequency:"//g | sed -e s/"  Access Point:"//g | sed -e s/"          Bit Rate="//g | sed -e s/"          Retry short limit:7   RTS thr:off   Fragment thr:off"//g | grep -v Rx | grep -v Tx | grep -v Power |  tr -s '\n' ' '`
+l2=`$whereisiwconfig $wifiinterface | sed -e s/"$wifiinterface.*IEEE 802.11abgn  ESSID:"//g | sed -e s/"          Mode:Managed  Frequency:"//g | sed -e s/"  Access Point:"//g | sed -e s/"          Bit Rate="//g | sed -e s/"          Retry short limit:7   RTS thr:off   Fragment thr:off"//g | grep -v Rx | grep -v Tx | grep -v Power |  tr -s '\n' ' '`
 #echo -n " ${bold} bla ${norm}"
 echo -n $l2 | sed "s/\(-[0-9]\{2\}\) dBm/${bold}\1${norm} dBm /"
 #lees=`/usr/bin/ifconfig wlp2s0 | grep 'inet addr:'`
